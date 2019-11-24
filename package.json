@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "test": "NODE_ENV=test jest"
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
   },
   "dependencies": {
     "dotenv": "^8.0.0",
@@ -14,13 +16,13 @@
     "express-async-errors": "^3.1.1",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.9.4",
+    "sequelize": "^5.21.2",
     "youch": "^2.0.10"
   },
   "devDependencies": {
     "@sucrase/jest-plugin": "^2.0.0",
     "@types/jest": "^24.0.23",
-    "eslint": "^5.16.0",
+    "eslint": "^6.7.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
